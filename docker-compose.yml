@@ -1,0 +1,26 @@
+services:
+  reservations:
+    build:
+      context: .
+      dockerfile: apps/reservations/Dockerfile
+      target: development
+    command: pnpm run start:dev reservations
+    ports: 
+      - "3000:3000"
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+
+  # mongodb:
+  #   image: mongo:7
+  #   container_name: sleepr-mongodb
+  #   restart: unless-stopped
+  #   ports:
+  #     - "27017:27017"
+  #   environment:
+  #     MONGO_INITDB_DATABASE: sleepr
+  #   volumes:
+  #     - mongodb_data:/data/db
+
+  mongo:
+    image: mongo:7
